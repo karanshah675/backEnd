@@ -1,0 +1,23 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/karanshah675/nodeJS#readme",
+  "bugs": {
+    "url": "https://github.com/karanshah675/nodeJS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karanshah675/nodeJS.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "l1_process.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "random-word": "^3.0.0"
+  }
+}
