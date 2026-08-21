@@ -13,9 +13,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/karanshah675/backEnd/issues"
   },
-  "homepage": "https://github.com/karanshah675/backEnd#readme"
+  "homepage": "https://github.com/karanshah675/backEnd#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
