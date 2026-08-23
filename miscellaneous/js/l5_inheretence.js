@@ -6,7 +6,7 @@ class Person {
     this.age = age;
   }
   talk() {
-    console.log("you name is ",this.name);
+    console.log("you name is ", this.name);
   }
 }
 class School extends Person {
@@ -14,7 +14,6 @@ class School extends Person {
     super(name, age);
     this.mark = mark;
   }
-  // console.log();
 }
 class Teacher extends Person {
   constructor(name, age, subject) {
@@ -23,7 +22,8 @@ class Teacher extends Person {
   }
 }
 
-let s1 = new School("karan",22,100)
-let t1 = new Teacher("nikita",33,"maths")
+let s1 = new School("karan", 22, 100);
+let t1 = new Teacher("nikita", 33, "maths");
 
-s1.talk()
+s1.talk();
+
