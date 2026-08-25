@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+}
+.posts{
+    padding: 10px;
+}
+.post{
+    background-color: #111;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #9b9b9b;
+}
+h3{
+    background-color: #111;
+    margin-bottom: 10px;
+}
+h4{
+    background-color: #111;
+
+}
