@@ -53,6 +53,7 @@ app.get("/posts/:id/edit",(req,res)=>{
         res.render("edit.ejs",{post})
      
 })
+
 app.patch("/posts/:id",(req,res)=>{
      let {id} = req.params
     let post  = posts.find((p)=> p.id===id);
