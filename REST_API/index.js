@@ -1,8 +1,10 @@
 const express = require('express')
 const req = require('express/lib/request')
 let app = express()
-let port = 8080
+let port = 3000
 const {v4:uuidv4} = require('uuid')
+var methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 // if we start our server from another directory and it is required to give path of views other wise express will not able to find views folder
 
 let path = require('path')
@@ -40,33 +42,26 @@ app.get("/posts/new",(req,res)=>{
 app.get("/posts/:id",(req,res)=>{
     let {id} = req.params
     let post  = posts.find((p)=> p.id===id);
-    if(post){
+   
         res.render("show.ejs",{post})
-    }else{
-        res.send("user not found")
-    }
-
+     
 })
-app.get("/posts/edit/:id",(req,res)=>{
+app.get("/posts/:id/edit",(req,res)=>{
     let {id} = req.params
      let post  = posts.find((p)=> p.id===id);
-     if(post){
-        res.render("edit.ejs",post)
-     }
+    //  if(post){
+        res.render("edit.ejs",{post})
+     
 })
-app.patch("/post/:id",(req,res)=>{
-    //  let {id} = req.params
-    // let post  = posts.find((p)=> p.id===id);
-    // let newContent = req.body.content
-    // if(post){
-    //     posts.forEach((p)=>{
-    //         if(p.id===id){
-    //             p.content = newContent
-    //         }
-    //     })
-    // }
-    console.log("patching");
-    
+app.patch("/posts/:id",(req,res)=>{
+     let {id} = req.params
+    let post  = posts.find((p)=> p.id===id);
+    let newContent = req.body.content
+    if(post){
+        post.content = newContent
+    }
+    // console.log("patching");
+    // res.send("hi path")
 })
 app.post("/posts",(req,res)=>{
      let {username,content} = req.body
