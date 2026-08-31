@@ -64,6 +64,11 @@ app.patch("/posts/:id",(req,res)=>{
     // console.log("patching");
     // res.send("hi path")
 })
+app.delete("/posts/:id",(req,res)=>{
+    let {id} = req.params
+    posts = posts.filter((p)=>p.id!==id)
+    res.send("deleted")
+})
 app.post("/posts",(req,res)=>{
      let {username,content} = req.body
      let id = uuidv4()
