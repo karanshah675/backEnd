@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>users</title>
+    <style>
+        th,td{
+            padding: 3px;
+        }
+    </style>
 </head>
 <body>
     <table border="1">
@@ -11,13 +16,22 @@
             <th>id</th>
             <th>username</th>
             <th>email</th>
+            <th>edit</th>
+            <th>delete</th>
         </tr>
         <% for(i of result){%>
             <tr>
                 <td><%= i.id %></td>
                 <td><%= i.username %></td>
                 <td><%= i.email %></td>
-                <td><a href="http://localhost:8080/<%= i.id %>/edit">edit</a></td>
+                <td><form method="get" action="/user/<%= i.id %>/edit">
+                    <!-- <input type="submit" value="delete"> -->
+                     <button>Edit</button>
+                </form></td>
+                <td><form method="post" action="/user/<%= i.id %>?_method=DELETE">
+                    <!-- <input type="submit" value="delete"> -->
+                     <button>Delete</button>
+                </form></td>
             </tr>
         <% } %>
         <tr>

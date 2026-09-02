@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <%= result %>
+    <!-- <h1>user id</h1><%= data.id %> -->
+    <h1>you are about to edit user : <%= data.email %></h1>
+    <form action="/user/<%= data.id %>?_method=PATCH" method="post">
+        <textarea name="user" id=""><%= data.username %></textarea>
+        <input type="password" placeholder="enter password" name="pass">
+        <button>edit</button>
+    </form>
 </body>
 </html>
