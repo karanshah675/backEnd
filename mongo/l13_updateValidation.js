@@ -1,3 +1,4 @@
+// let booksSchema = require("./l12_schema_options")
 let mongoose = require("mongoose");
 
 mongoose
@@ -13,13 +14,13 @@ let booksSchema = new mongoose.Schema({
   title: {
     type: String,
     require: true,
-    min:0,
   },
   author: {
     type: String,
   },
   price: {
     type: Number,
+    min: 0,
   },
   discount: {
     type: Number,
@@ -32,19 +33,11 @@ let booksSchema = new mongoose.Schema({
 });
 
 const Books = mongoose.model("Book", booksSchema);
-
-let newbook = new Books({
-  title: "godan",
-  author: "munshi premchand",
-  price: 100,
-});
-
-newbook
-  .save()
+//run validators true checks schema while updating also
+Books.findByIdAndUpdate("6aae9570304a3f71d8c14349", { price: -3 },{runValidators:true})
   .then((res) => {
     console.log(res);
   })
   .catch((err) => {
     console.log(err);
   });
-module.exports = booksSchema
