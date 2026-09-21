@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="chats/new" method="get">
-        <button>new chat</button>
+    <form action="chats/new" method="get" class="chtbtn">
+        <button class="newCht">new chat</button>
     </form>
     <%for(let chat of chats){%>
         <div class="chat">
+            <form action="/chats/<%= chat.id %>/edit" method="get" class="chtedit">
+                <button>edit</button>
+            </form>
             <p><%= chat.from %></p>
             <p class="message"><%= chat.msg %></p>
             <p><%= chat.to %></p>
+            <p><%= chat.date.toString().split(" ")[4].split(":").slice(0,2).join(":") %></p>
+
         </div>
     <%}%>
     

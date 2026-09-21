@@ -25,17 +25,47 @@ body{
     background-color: #454242;
     border-radius: 10px;
 }
-.chat p:nth-child(1){
+.chat p:nth-child(2){
     /* position: absolute; */
     color: rgb(251, 130, 245);
     margin-top: -10px;
     margin-left: 0;
     font-weight: bold;
     padding: 0;
+    margin-bottom: 5px;
+}
+.chat p:nth-last-child(2){
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    color: grey;
 }
 .chat p:nth-last-child(1){
     position: absolute;
     bottom: 0;
     right: 10px;
     color: grey;
+}
+.newCht{
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 0;
+    background-color:       rgb(251, 130, 245); 
+}
+.chtbtn{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+.chtedit{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.chtedit button{
+    background-color: transparent;
+    color: grey;
+    border: 0;
+
 }

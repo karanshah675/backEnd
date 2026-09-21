@@ -4,7 +4,8 @@ let app = express();
 let port = 8080;
 let Chat = require("./models/chat.js");
 let mongoose = require("mongoose");
-
+let methodOverride = require("method-override");
+app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,7 +42,7 @@ app.post("/chats", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-    res.redirect("/chats")
+  res.redirect("/chats");
 });
 
 app.listen(port, () => {
@@ -56,3 +57,24 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+app.get("/chats/:id/edit", async (req, res) => {
+  let { id } = req.params;
+  let chat = await Chat.find({ _id: id });
+  let chats = chat[0];
+  console.log(chats);
+  res.render("edit.ejs", { chats });
+});
+
+app.put("/chats/:id", (req, res) => {
+  let { id } = req.params;
+  let { msg } = req.body;
+  Chat.findByIdAndUpdate(id, { msg: msg })
+    .then((res2) => {
+      // console.log(res);
+      res.redirect("/chats");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
