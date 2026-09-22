@@ -16,6 +16,7 @@ body{
     margin: 10px;
     border-radius:  0 15px 15px 15px;
     padding: 10px;
+    /* padding-top: 20px; */
     position: relative;
 }
 .message{
@@ -67,5 +68,15 @@ body{
     background-color: transparent;
     color: grey;
     border: 0;
-
+}
+.chtdelete{
+    position: absolute;
+    right: 28px;
+    top: 5px;
+    
+}
+.chtdelete button{
+    background-color: transparent;
+    color: grey;
+    border: 0;
 }

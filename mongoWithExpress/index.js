@@ -65,6 +65,19 @@ app.get("/chats/:id/edit", async (req, res) => {
   console.log(chats);
   res.render("edit.ejs", { chats });
 });
+app.delete("/chats/:id", async (req, res) => {
+  let { id } = req.params;
+  // let chat = await Chat.find({ _id: id });
+  // let chats = chat[0];
+ Chat.findByIdAndDelete(id)
+    .then((res2) => {
+      // console.log(res);
+      res.redirect("/chats");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.put("/chats/:id", (req, res) => {
   let { id } = req.params;
