@@ -4,6 +4,7 @@ let app = express();
 app.listen(8080, () => {
   console.log("server started");
 });
+
 let checkToken = (req, res, next) => {
   let { token } = req.query;
   if (token == "11Ackj23") {
