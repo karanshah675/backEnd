@@ -12,15 +12,25 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(express.static(path.join(__dirname, "/public")));
+
+function asyncWrap(fn) {
+  return function (req, res, next) {
+    fn(req, res, next).catch((err) => next(err));
+  };
+}
 app.get("/", (req, res) => {
   // console.log("root path");
   res.send("root path");
 });
-app.get("/chats", async (req, res) => {
+app.get("/chats", async (req, res, next) => {
   // console.log("root path");
   // res.send("root path")
-  let chats = await Chat.find();
-  res.render("index.ejs", { chats });
+  try {
+    let chats = await Chat.find();
+    res.render("index.ejs", { chats });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.get("/chats/new", (req, res) => {
@@ -58,18 +68,26 @@ mongoose
     console.log(err);
   });
 
-app.get("/chats/:id/edit", async (req, res) => {
-  let { id } = req.params;
-  let chat = await Chat.find({ _id: id });
-  let chats = chat[0];
-  console.log(chats);
-  res.render("edit.ejs", { chats });
-});
+app.get(
+  "/chats/:id/edit",
+  asyncWrap(async (req, res, next) => {
+    let { id } = req.params;
+    let chat = await Chat.find({ _id: id });
+
+    if (!chat) {
+      const err = new Error("Chat not found");
+      err.status = 404;
+      throw err;
+    }
+    let chats = chat[0];
+    res.render("edit.ejs", { chats });
+  }),
+);
 app.delete("/chats/:id", async (req, res) => {
   let { id } = req.params;
   // let chat = await Chat.find({ _id: id });
   // let chats = chat[0];
- Chat.findByIdAndDelete(id)
+  Chat.findByIdAndDelete(id)
     .then((res2) => {
       // console.log(res);
       res.redirect("/chats");
@@ -90,4 +108,15 @@ app.put("/chats/:id", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  const statusCode = err.status || 500;
+
+  res
+    .status(statusCode)
+    .send(
+      statusCode === 404 ? err.message : "Something went wrong on the server!",
+    );
 });
