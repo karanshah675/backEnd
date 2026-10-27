@@ -58,7 +58,10 @@ let addCustom = async () => {
 // addCustom();
 custom
   .find()
-  .populate("orders")//used to get reference data
+  .populate("orders") //used to get reference data
   .then((res) => {
     console.log(res[0]);
   });
+
+module.exports = {custom,order,customerSchema};
+ 
